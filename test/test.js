@@ -1,5 +1,6 @@
 const assert = require('assert');
 const sumOfOther = require('../src/sumOfOther');
+const make = require('../src/make.js');
 
 describe('sumOfOther', () => {
 	it('1', () => {
@@ -42,4 +43,37 @@ describe('sumOfOther', () => {
 	  assert.equal(sumOfOther([100000000]).toString(), [0].toString());
 	});
 
+});
+
+
+describe('make', () => {
+  it('0', () => {
+    const sum = (a, b) => a + b;
+    const result = make(15)(34, 21, 666)(41)(sum);
+    assert.equal(result, 777);
+  });
+
+  it('1', () => {
+    const sum = (a, b) => a + b;
+    const result = make(1, 2, 3)(4, 5)(6)(7)(sum);
+    assert.equal(result, 28);
+  });
+
+  it('2', () => {
+    const sum = (a, b) => a - b;
+    const result = make(100)(20)(30)(50)(sum);
+    assert.equal(result, 0);
+  });
+
+  it('3', () => {
+    const sum = (a, b) => a * b;
+    const result = make(1)(2)(5, 5)(50, 2, 2)(sum);
+    assert.equal(result, 10000);
+  });
+
+  it('4', () => {
+    const sum = (a, b) => a ** b;
+    const result = make(2, 5, 100)(0)(sum);
+    assert.equal(result, 1);
+  });
 });
